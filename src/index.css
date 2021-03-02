@@ -1,3 +1,19 @@
+:root {
+  --base-bg: #fff;
+  --base-fg: #333;
+  --clickable-height: 2rem;
+  --theme-bg: #036;
+  --theme-fg: #fff;
+  font-size: 16px;
+}
+
+/* no mouse devices */
+@media (pointer:coarse) {
+  :root {
+    --clickable-height: 3rem;
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +23,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3 {
+  margin: 1em 0 0;
+}
+
+p {
+  margin: 1rem 0 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.ui-container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: min(800px, 100%);
+}
+
+.ui-box {
+  margin-top: 1rem;
+}
+
+.ui-pullRight {
+  float: right;
 }

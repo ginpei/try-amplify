@@ -1,0 +1,10 @@
+.TaskSection-TaskItem {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1rem;
+}
+
+.TaskSection-TaskItem + .TaskSection-TaskItem {
+  border-style: none solid solid;
+}

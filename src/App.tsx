@@ -1,26 +1,16 @@
-import React from "react";
-import logo from "./logo.svg";
+import { DataStore } from "@aws-amplify/datastore";
+import React, { useEffect } from "react";
 import "./App.css";
+import { BasicLayout } from "./components/common/BasicLayout";
+import { TaskSection } from "./components/home/TaskSection";
+import { Task, Work } from "./models";
 
-function App(): React.ReactElement {
+export function App(): React.ReactElement {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BasicLayout>
+      <div className="App">
+        <TaskSection />
+      </div>
+    </BasicLayout>
   );
 }
-
-export default App;

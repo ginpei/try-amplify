@@ -1,0 +1,11 @@
+.BasicHeader {
+  background-color: var(--theme-bg);
+  color: var(--theme-fg);
+  font-size: 0.8rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.BasicHeader a {
+  color: inherit;
+}
