@@ -1,0 +1,12 @@
+type Work @model @auth(rules: [{allow: public}]) @key(name: "byTask", fields: ["taskID"]) {
+  id: ID!
+  taskID: ID
+  description: String
+}
+
+type Task @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  Works: [Work] @connection(keyName: "byTask", fields: ["id"])
+}
