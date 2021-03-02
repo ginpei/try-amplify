@@ -38,6 +38,17 @@ export const TaskSection: React.FC = () => {
     }
   };
 
+  const onTaskChange: TaskCallback = async (task) => {
+    try {
+      setSaving(true);
+      await DataStore.save(task);
+    } catch (error) {
+      logError(error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
   useEffect(() => {
     DataStore.query(Task).then((newTasks) => {
       setTasks(newTasks);
@@ -64,7 +75,12 @@ export const TaskSection: React.FC = () => {
         (tasks.length > 0 ? (
           <div className="ui-box">
             {tasks.map((task) => (
-              <TaskItem key={task.id} onDelete={onTaskDelete} task={task} />
+              <TaskItem
+                key={task.id}
+                onChange={onTaskChange}
+                onDelete={onTaskDelete}
+                task={task}
+              />
             ))}
           </div>
         ) : (
@@ -90,7 +106,12 @@ const TaskForm = ({
   const onValueChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
     if (name === "name") {
-      onChange(new Task({ ...task, name: value }));
+      onChange(
+        Task.copyOf(task, (updated) => {
+          // eslint-disable-next-line no-param-reassign
+          updated.name = value;
+        })
+      );
     }
   };
 
@@ -121,15 +142,34 @@ const TaskForm = ({
 };
 
 const TaskItem = ({
+  onChange,
   onDelete,
   task,
 }: {
+  onChange: TaskCallback;
   onDelete: TaskCallback;
   task: Task;
 }) => {
+  const onNameClick = () => {
+    // eslint-disable-next-line no-alert
+    const name = window.prompt("Task name", task.name);
+    if (!name) {
+      return;
+    }
+
+    onChange(
+      Task.copyOf(task, (updated) => {
+        // eslint-disable-next-line no-param-reassign
+        updated.name = name;
+      })
+    );
+  };
+
   return (
     <div className="TaskSection-TaskItem">
-      {task.name}
+      <span className="ui-link" onClick={onNameClick}>
+        {task.name}
+      </span>
       <button
         className="ui-pullRight"
         onClick={() => onDelete(task)}

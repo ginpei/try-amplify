@@ -2,6 +2,8 @@
   --base-bg: #fff;
   --base-fg: #333;
   --clickable-height: 2rem;
+  --link-bg: transparent;
+  --link-fg: #00f;
   --theme-bg: #036;
   --theme-fg: #fff;
   font-size: 16px;
@@ -33,6 +35,10 @@ p {
   margin: 1rem 0 0;
 }
 
+link {
+  color: var(--link-fg);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -53,4 +59,10 @@ code {
 
 .ui-pullRight {
   float: right;
+}
+
+.ui-link {
+  color: var(--link-fg);
+  cursor: pointer;
+  text-decoration: underline;
 }
